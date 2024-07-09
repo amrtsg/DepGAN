@@ -1,4 +1,4 @@
-# Depth GAN (DepGAN): Leveraging Depth Maps for Handling Occlusions and Transparency in Image Composition
+## Depth GAN (DepGAN): Leveraging Depth Maps for Handling Occlusions and Transparency in Image Composition
 
 ![alt text](https://github.com/amrtsg/DepGAN/blob/master/misc/results.jpg?raw=true)
 
