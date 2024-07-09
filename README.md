@@ -19,6 +19,8 @@ Nvidia RTX 3090
 We have provided Shapenet's basket-bottle dataset in the ```data/bottle``` folder. Including the depth estimations for each background image in the ```depth``` folder.
 To create your own dataset, we recommend using MiDaS to estimate the depth images.
 
+Aerial dataset: coming soon
+
 ## Environment
 
 *Please make sure you have Cuda 12.1 installed on your machine.*
