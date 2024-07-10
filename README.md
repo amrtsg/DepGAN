@@ -31,9 +31,9 @@ Real Car | NA |
 
 Dataset | Model | Size |
 --- | --- | --- |
-Bottle-Basket | [bottle_basket_75]() | 239 MB |
-Chair-Desk | [chair_desk_164]() | 239 MB |
-Glasses-Face | Coming soon... | NA |
+Bottle-Basket | [bottle_basket_75]() | 239.0 MB |
+Chair-Desk | [chair_desk_164]() | 239.0 MB |
+Glasses-Face | [glasses_face_15]() | 239.8 MB |
 Aerial | Coming soon... | NA |
 Real Car | Coming soon... | NA |
 
