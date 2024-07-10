@@ -1,7 +1,7 @@
 
 ## DATASETS ##
-TRAIN_DATASET = 'bottle-basket' # Dataset to use for training
-TEST_DATASET = 'bottle-basket' # Dataset to use for predictions (testing)
+TRAIN_DATASET = 'bottle_basket' # Dataset to use for training
+TEST_DATASET = 'bottle_basket' # Dataset to use for predictions (testing)
 # The dataset is the dataset folder name inside 'data'
 
 ## GUI ##
