@@ -39,4 +39,4 @@ NOTE: You can expect the training run to take 10 minutes for 100 epochs on a 309
 
 To test depgan, run ```predict.ipynb```, this will generate the predictions and save the output to ```logs/generated/{DATASET}```.
 
-All variables can be found and set in ```config.py```. Please make sure you have the correct configuration for your train/test run.
+All variables can be found and set in ```config.py```. These include config variables to control GUI, dataset paths, and model hyperparameters. Please make sure you have the correct configuration for your train/test run.
