@@ -1,13 +1,14 @@
 
 ## DATASETS ##
-TRAIN_DATASET = 'bottle' # Dataset to use for training
-TEST_DATASET = 'bottle' # Dataset to use for predictions (testing)
+TRAIN_DATASET = 'bottle-basket' # Dataset to use for training
+TEST_DATASET = 'bottle-basket' # Dataset to use for predictions (testing)
+# The dataset is the dataset folder name inside 'data'
 
 ## GUI ##
-USE_GRAPHS = True
+USE_GRAPHS = False
 
 ## HYPERPARAMS ##
-USE_VAL = True # Allow for validation steps during training
+USE_VAL = False # Allow for validation steps during training
 VAL_SAMPLES = 3 # Number of validation samples
 VAL_FREQUENCY = 100 # Perform validation every x step
 EPOCHS = 1000 # Number of epochs
@@ -17,6 +18,8 @@ G_LR = 0.0002 # Generator learning rate
 
 ## ARCH PARAMS ##
 USE_STN = False # Use STN in training
+USE_DAL = True # Use Depth Aware Loss in the generator
+EXTRA_DISC_LAYER = False # Use extra discriminator layer
 
 ## MISC ##
 STN_CHECK = False # Run the STN sanity check step

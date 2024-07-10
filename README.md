@@ -21,8 +21,8 @@ To create your own dataset, we recommend using MiDaS to estimate the depth image
 
 Dataset | Size |
 --- | --- |
-Bottle-Basket | 13.1MB |
-Chair-Desk | NA |
+[Bottle-Basket]() | 13.1 MB |
+[Chair-Desk]() | 81.0 MB |
 Glasses-Face | NA |
 Aerial | NA |
 Real Car | NA |
@@ -31,8 +31,8 @@ Real Car | NA |
 
 Dataset | Model | Size |
 --- | --- | --- |
-Bottle-Basket | Included | 13.1MB |
-Chair-Desk | Coming soon... | NA |
+Bottle-Basket | [bottle_basket_75]() | 239 MB |
+Chair-Desk | [chair_desk_164]() | 239 MB |
 Glasses-Face | Coming soon... | NA |
 Aerial | Coming soon... | NA |
 Real Car | Coming soon... | NA |

@@ -102,12 +102,11 @@ def define_discriminator(image_shape, lr):
 	d = Conv2D(512, (4,4), strides=(2,2), padding='same', kernel_initializer=init)(d)
 	d = BatchNormalization()(d)
 	d = LeakyReLU(alpha=0.2)(d)
-	"""
-	# second last output layer : 4x4 kernel but Stride 1x1
-	d = Conv2D(512, (4,4), padding='same', kernel_initializer=init)(d)
-	d = BatchNormalization()(d)
-	d = LeakyReLU(alpha=0.2)(d)
-	"""
+	if cfg.EXTRA_DISC_LAYER:
+		# second last output layer : 4x4 kernel but Stride 1x1
+		d = Conv2D(512, (4,4), padding='same', kernel_initializer=init)(d)
+		d = BatchNormalization()(d)
+		d = LeakyReLU(alpha=0.2)(d)
 	# patch output
 	d = Conv2D(1, (4,4), padding='same', kernel_initializer=init)(d)
 	patch_out = Activation('sigmoid')(d)
@@ -246,7 +245,10 @@ def define_gan(g_model, d_model, image_shape, lr):
 	# compile model
 	opt = Adam(learning_rate=lr, beta_1=0.5)
     #Total loss is the weighted sum of adversarial loss (BCE),  L1 loss (MAE) and Depth Aware Loss (DAL)
-	model.compile(loss=['binary_crossentropy', 'mae', depth_aware_loss], optimizer=opt, loss_weights=[1,100, 100])
+	if cfg.USE_DAL:
+		model.compile(loss=['binary_crossentropy', 'mae', depth_aware_loss], optimizer=opt, loss_weights=[1,100, 100])
+	else:
+		model.compile(loss=['binary_crossentropy', 'mae'], optimizer=opt, loss_weights=[1,100])
 	return model
 
 # select a batch of random samples, returns images and target
