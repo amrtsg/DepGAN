@@ -23,7 +23,7 @@ Dataset | Size |
 --- | --- |
 [Bottle-Basket]() | 13.1 MB |
 [Chair-Desk]() | 81.0 MB |
-Glasses-Face | NA |
+[Glasses-Face]() | 33.4 MB |
 Aerial | NA |
 Real Car | NA |
 
