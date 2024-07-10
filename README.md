@@ -14,12 +14,28 @@ Ryzen 7 3800x
 Nvidia RTX 3090
 ```
 
-## Dataset
+## Datasets
 
 We have provided Shapenet's basket-bottle dataset in the ```data/bottle``` folder. Including the depth estimations for each background image in the ```depth``` folder.
 To create your own dataset, we recommend using MiDaS to estimate the depth images.
 
-Aerial dataset: coming soon
+Dataset | Size |
+--- | --- |
+Bottle-Basket | 13.1MB |
+Chair-Desk | NA |
+Glasses-Face | NA |
+Aerial | NA |
+Real Car | NA |
+
+## Pretrained Models
+
+Dataset | Model | Size |
+--- | --- | --- |
+Bottle-Basket | Included | 13.1MB |
+Chair-Desk | Coming soon... | NA |
+Glasses-Face | Coming soon... | NA |
+Aerial | Coming soon... | NA |
+Real Car | Coming soon... | NA |
 
 ## Environment
 
