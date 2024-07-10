@@ -38,7 +38,5 @@ To train depgan, run ```train.ipynb```. This trains and saves the model at every
 NOTE: You can expect the training run to take 10 minutes for 100 epochs on a 3090, we recommend 150 epochs.
 
 To test depgan, run ```predict.ipynb```, this will generate the predictions and save the output to ```logs/generated/{DATASET}```.
-NOTE: Make sure to pick the correct saved model from the logs/model folder, this is found in the line 
-```
-model = load_model('logs/cgan/models/g_model_epochXXX.h5')
-```
+
+All variables can be found and set in ```config.py```. Please make sure you have the correct configuration for your train/test run.
