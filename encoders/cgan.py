@@ -1,6 +1,7 @@
-from os import listdir
+import os
 import numpy as np
-from gui.gui import *
+import config as cfg
+from gui.gui import update_train_plot, update_val_plot, init_gui
 import gc
 import tensorflow as tf
 gpus = tf.config.experimental.list_physical_devices('GPU')
@@ -38,7 +39,7 @@ class colors:
 def load_imgs(path, size=(256,256)):
 	src_list = list()
 	# enumerate filenames in directory, assume all are images
-	for filename in listdir(path):
+	for filename in os.listdir(path):
 		# load and resize the image
 		pixels = load_img(path + filename, target_size=size, color_mode='rgba')
 		# convert to numpy array
@@ -156,7 +157,7 @@ def depth_aware_loss(y_true, y_pred):
     input_images = tf.concat([y_true, y_pred], axis=-1)
     
     in_depth = input_images[..., -1]  # Extract the depth map from the input
-    threshold_depth = 100 / 255.0  # Adjust this threshold value based on your specific case
+    threshold_depth = 100 / 255.0  # Adjust this threshold value based on dataset
 
     # Create a binary mask based on the threshold
     depth_mask = tf.cast(tf.math.greater(in_depth, threshold_depth), tf.float32)
@@ -230,7 +231,7 @@ def define_gan(g_model, d_model, image_shape, lr):
 	# make weights in the discriminator not trainable
 	for layer in d_model.layers:
 		if not isinstance(layer, BatchNormalization):
-			layer.trainable = False  # Discriminator layers set to be untrainable
+			layer.trainable = False
             
 	# define the source image
 	in_src = Input(shape=image_shape)
@@ -306,12 +307,19 @@ def summarize_performance(g_model, dataset, n_samples, curr_epoch, curr_step):
 		plt.axis('off')
 		plt.imshow(objects[i])
 		#plt.title('Paired')
+	if not os.path.exists(cfg.PLOTS_DIR):
+		os.makedirs(cfg.PLOTS_DIR)
 	# save plot to file
-	filename1 = f'logs/plots/plot_{int(curr_epoch)}.png'
+	filename1 = f'{cfg.PLOTS_DIR}plot_{int(curr_epoch)}.png'
 	plt.savefig(filename1)
 	plt.close()
+
+	# Define the directory path
+	# Check if the directory exists, if not, create it
+	if not os.path.exists(cfg.MODEL_DIR):
+		os.makedirs(cfg.MODEL_DIR)
 	# save the generator model
-	g_model.save(f'logs/models/g_model_epoch{int(curr_epoch)}.h5')
+	g_model.save(f'{cfg.MODEL_DIR}g_model_epoch{int(curr_epoch)}.h5')
 	#g_model.save(f'logs/cgan/models/g_model/g_model.h5')
 	# save the discriminator model
 	# save the GAN model
@@ -321,20 +329,21 @@ def summarize_performance(g_model, dataset, n_samples, curr_epoch, curr_step):
 # Train function
 ######################################################################################
 
-def train(d_model, g_model, gan_model, dataset, n_val_samples, val_freq, n_epochs, n_batch, val_dataset=None):
+def train(d_model, g_model, gan_model, dataset, val_dataset=None):
 	# determine the output square shape of the discriminator
 	n_patch = d_model.output_shape[1]
 	# unpack dataset
 	backgrounds, paired, objects, depth = dataset
 	# calculate the number of batches per training epoch
-	bat_per_epo = int(len(backgrounds) / n_batch)
+	bat_per_epo = int(len(backgrounds) / cfg.BATCH_SIZE)
 	# calculate the number of training iterations
-	n_steps = bat_per_epo * n_epochs
-	#print(f'# of Steps: {colors.RED}{n_steps}{colors.ENDC} - Checkpoint every: {colors.RED}{n_steps/n_epochs}{colors.ENDC} Steps.')
+	n_steps = bat_per_epo * cfg.EPOCHS
+	# start GUI 
+	init_gui()
 	# manually enumerate epochs
 	for i in range(n_steps):
 			# select a batch of real samples
-			[xback, xpaired, xobj, xdep], y_real = generate_real_samples(dataset, n_batch, n_patch)
+			[xback, xpaired, xobj, xdep], y_real = generate_real_samples(dataset, cfg.BATCH_SIZE, n_patch)
 			# generate a batch of fake samples
 			xgen, y_fake = generate_fake_samples(g_model, xback, xobj, xdep, n_patch)
 			# update discriminator for real samples
@@ -346,31 +355,23 @@ def train(d_model, g_model, gan_model, dataset, n_val_samples, val_freq, n_epoch
 			g_loss, _, _ = gan_model.train_on_batch([xback, xobj, xdep], [y_real, xpaired])
 			# calc current steps/epochs
 			curr_step = i+1
-			curr_epoch = (curr_step)/(n_steps/n_epochs)
+			curr_epoch = (curr_step)/(n_steps/cfg.EPOCHS)
 			# update GUI
 			update_train_plot(curr_epoch, curr_step, d_loss, g_loss)
-			"""
-			print(f'Epoch {colors.YELLOW}{int(curr_epoch)}{colors.ENDC}: '\
-			  	f'Step {colors.RED}{curr_step}{colors.ENDC}: '\
-			  	f'Discriminator: {colors.BLUE}{d_loss:.2f}{colors.ENDC} '\
-			  	f'Generator: {colors.BLUE}{g_loss:.2f}{colors.ENDC}')
-			"""
 			# Validation step
-			"""
-			if (i+10) % val_freq == 0:
-            	# Select a batch of validation samples
-				[val_backgrounds, val_paired, val_objects, val_maps], _ = generate_real_samples(dataset, n_val_samples, n_patch)
-				val_loss = gan_model.evaluate([backgrounds, val_objects], [np.ones((n_val_samples, n_patch, n_patch, 1)), val_paired], verbose=0)
-				print(f'{colors.CYAN}Validation Loss [Step {i+1}]: '\
-		 		  	f'Total Loss: {colors.BLUE} {val_loss[0]:.2f} {colors.CYAN} '\
-			      	f'Adversarial Loss: {colors.BLUE} {val_loss[1]:.2f} {colors.CYAN} '\
-				  	f'MAE (Generator) Loss: {colors.BLUE} {val_loss[2]:.2f} {colors.ENDC}')
-				# Predict an image for the validation plot
-				generated = g_model.predict([np.expand_dims(val_backgrounds[np.random.randint(0, len(val_backgrounds))], axis=0), 
-										 	np.expand_dims(val_objects[np.random.randint(0, len(val_objects))], axis=0)])
-				generated = (generated + 1) / 2.0
-				update_val_plot(curr_epoch, curr_step, val_loss, generated)
-			"""
+			if cfg.USE_VAL:
+				if (i+10) % cfg.VAL_FREQUENCY == 0:
+            		# Select a batch of validation samples
+					[val_backgrounds, val_paired, val_objects, val_maps], _ = generate_real_samples(val_dataset, cfg.VAL_SAMPLES, n_patch)
+					val_loss = gan_model.evaluate([val_backgrounds, val_objects, val_maps], [np.ones((cfg.VAL_SAMPLES, n_patch, n_patch, 1)), val_paired], verbose=0)
+					# Predict an image for the validation plot
+					generated = g_model.predict([np.expand_dims(val_backgrounds[np.random.randint(0, len(val_backgrounds))], axis=0), 
+										 		np.expand_dims(val_objects[np.random.randint(0, len(val_objects))], axis=0), 
+												np.expand_dims(val_objects[np.random.randint(0, len(val_maps))], axis=0)])
+					
+					generated = (generated + 1) / 2.0
+					update_val_plot(curr_epoch, curr_step, val_loss, generated)
+
 			# summarize model performance
 			if (i+1) % (bat_per_epo * 1) == 0:
 				summarize_performance(g_model, dataset, 3, curr_epoch, curr_step)
