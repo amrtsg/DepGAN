@@ -20,7 +20,7 @@ USE_STN = False # Use STN in training
 
 ## MISC ##
 STN_CHECK = False # Run the STN sanity check step
-MODEL_DIR = 'logs/models/' # Directory to save models
+MODEL_DIR = 'logs/models' # Directory to save models
 PLOTS_DIR = 'logs/plots' # Directory to save plots
-GEN_DIR = 'logs/generated/' # Directory to save predictions
+GEN_DIR = 'logs/generated' # Directory to save predictions
 TEST_EPOCH = 1 # Test saved model at X epoch

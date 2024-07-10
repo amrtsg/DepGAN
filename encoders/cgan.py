@@ -310,7 +310,7 @@ def summarize_performance(g_model, dataset, n_samples, curr_epoch, curr_step):
 	if not os.path.exists(cfg.PLOTS_DIR):
 		os.makedirs(cfg.PLOTS_DIR)
 	# save plot to file
-	filename1 = f'{cfg.PLOTS_DIR}plot_{int(curr_epoch)}.png'
+	filename1 = f'{cfg.PLOTS_DIR}/plot_{int(curr_epoch)}.png'
 	plt.savefig(filename1)
 	plt.close()
 
@@ -319,7 +319,7 @@ def summarize_performance(g_model, dataset, n_samples, curr_epoch, curr_step):
 	if not os.path.exists(cfg.MODEL_DIR):
 		os.makedirs(cfg.MODEL_DIR)
 	# save the generator model
-	g_model.save(f'{cfg.MODEL_DIR}g_model_epoch{int(curr_epoch)}.h5')
+	g_model.save(f'{cfg.MODEL_DIR}/g_model_epoch{int(curr_epoch)}.h5')
 	#g_model.save(f'logs/cgan/models/g_model/g_model.h5')
 	# save the discriminator model
 	# save the GAN model
