@@ -1,6 +1,6 @@
 ## Depth GAN (DepGAN): Leveraging Depth Maps for Handling Occlusions and Transparency in Image Composition
 
-![alt text](https://github.com/amrtsg/DepGAN/blob/master/misc/results.jpg?raw=true)
+[![AltText](ImageLink)](redirectlink)
 
 ## Code Setup
 
@@ -23,7 +23,7 @@ Dataset | Size |
 --- | --- |
 [Bottle-Basket]() | 13.1 MB |
 [Chair-Desk]() | 81.0 MB |
-Glasses-Face | NA |
+[Glasses-Face]() | 33.4 MB |
 Aerial | NA |
 Real Car | NA |
 
@@ -31,9 +31,9 @@ Real Car | NA |
 
 Dataset | Model | Size |
 --- | --- | --- |
-Bottle-Basket | [bottle_basket_75]() | 239 MB |
-Chair-Desk | [chair_desk_164]() | 239 MB |
-Glasses-Face | Coming soon... | NA |
+Bottle-Basket | [bottle_basket_75]() | 239.0 MB |
+Chair-Desk | [chair_desk_164]() | 239.0 MB |
+Glasses-Face | [glasses_face_15]() | 239.8 MB |
 Aerial | Coming soon... | NA |
 Real Car | Coming soon... | NA |
 
