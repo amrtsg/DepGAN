@@ -3,22 +3,7 @@
 DepGAN is a generative adversarial network tailored for image composition, and capable of handling occlusion and transparency while combining foreground and background images together.
 
 <strong>NOTE: Links to datasets and pretrained models will be uploaded soon! For now just use the provided bottle-basket dataset :)</strong>
-____________________________________________________
-<div align="center">
-  <a href="https://amrtsg.github.io/DepGAN/">
-    <img src="https://github.com/amrtsg/DepGAN/blob/master/misc/project.png" alt="AltText">
-  </a>
-  <a href="https://amrtsg.github.io/DepGAN/">
-    <img src="https://github.com/amrtsg/DepGAN/blob/master/misc/paper.png" alt="AltText">
-  </a>
-  <a href="https://amrtsg.github.io/DepGAN/">
-    <img src="https://github.com/amrtsg/DepGAN/blob/master/misc/arxiv.png" alt="AltText">
-  </a>
-</div>
 
-_____________________________________________________
-
-![alt text](https://github.com/amrtsg/DepGAN/blob/master/misc/results.jpg)
 ## Code Setup
 
 **The code was developed and tested on:** <br>
@@ -74,14 +59,3 @@ To train depgan, run ```train.ipynb```. This trains and saves the model at every
 To test depgan, run ```predict.ipynb```, this will generate the predictions and save the output to ```logs/generated/{DATASET}```.
 
 All variables can be found and set in ```config.py```. These include config variables to control GUI, dataset paths, and model hyperparameters. Please make sure you have the correct configuration for your train/test run.
-
-## Citation
-
-If you use or want to cite DepGAN, please use:
-```
-@article{ghoneim2024depgan,
-    author    = {Ghoneim, Amr and Poovvancheri, Jiju and Akiyama, Yasushi and Chen, Dong},
-    title     = {DepGAN: Leveraging Depth Maps for Handling Occlusions and Transparency in Image Composition},
-    year      = {2024},
-  }
-```
