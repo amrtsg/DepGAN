@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HP1E6R38R5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-HP1E6R38R5');
+  </script>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="Leveraging Depth Maps for Handling Occlusions and Transparency in Image Composition">
+  <meta name="keywords" content="Depth, GAN, Generative, Neural Radiance Field">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DepGAN - Depth Generative Adversarial Network</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./css/bulma.min.css">
+  <link rel="stylesheet" href="./css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="icon" href="./images/favicon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./js/fontawesome.all.min.js"></script>
+  <script src="./js/bulma-carousel.min.js"></script>
+  <script src="./js/bulma-slider.min.js"></script>
+  <script src="./js/index.js"></script>
+</head>
+
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">DepGAN: Leveraging Depth Maps for Handling Occlusions and
+              Transparency in Image Composition</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://amrtsg.github.io/">Amr Ghoneim</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="https://cs.smu.ca/~jiju/">Jiju Poovvancheri</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="https://cs.smu.ca/~y_akiyama/">Yasushi Akiyama</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="mailto:chendong@njfu.edu.cn">Dong Chen</a><sup>2</sup>,
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Saint Mary's University, Halifax, Canada.</span> <span class="author-block"><sup>2</sup>Nanjing Forestry University, Nanjing, China.</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/amrtsg/DepGAN" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <!-- Dataset Link. -->
+                <span class="link-block">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="far fa-images"></i>
+                    </span>
+                    <span>Data</span>
+                  </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <img src="images/composition.png" alt="Description of the image">
+        <h2 class="subtitle has-text-centered">
+          DepGAN combines images of foregrounds and backgrounds to create composite images.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="hero is-light is-small">
+    <div class="hero-body">
+      <div class="container">
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="item">
+            <img src="images/resultsfullbottle.png" alt="Description of the image">
+          </div>
+          <div class="item">
+            <img src="images/resultsfulldesk1.png" alt="Description of the image">
+          </div>
+          <div class="item">
+            <img src="images/resultsfulldesk2.png" alt="Description of the image">
+          </div>
+          <div class="item">
+            <img src="images/resultsfullglasses1.png" alt="Description of the image">
+          </div>
+          <div class="item">
+            <img src="images/resultsfullglasses2.png" alt="Description of the image">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Image composition is a complex task which requires a lot of information about the scene
+              for an accurate and realistic composition, such as perspective, lighting, shadows, occlusions, and object
+              interactions. Previous
+              methods have predominantly used 2D information for image composition, neglecting the
+              potentials of 3D spatial information. In this work, we propose DepGAN, a Generative
+              Adversarial Network that utilizes depth maps and alpha channels to rectify inaccurate
+              occlusions and enhance transparency effects in image composition. Central to our network is a novel loss
+              function called Depth
+              Aware Loss which quantifies the pixel wise depth difference to accurately delineate
+              occlusion boundaries while compositing objects at different depth levels. Furthermore,
+              we enhance our network's learning process by utilizing opacity data, enabling it to
+              effectively manage compositions involving transparent and semi-transparent objects.
+              We tested our model against state-of-the-art image composition GANs on benchmark (both real and synthetic)
+              datasets.
+              The results reveal that DepGAN significantly outperforms existing methods in terms of accuracy of object
+              placement
+              semantics, transparency and occlusion handling, both visually and quantitatively.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+
+      <!-- Paper video. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Architecture</h2>
+          <img src="images/arch.png" alt="Description of the image">
+        </div>
+      </div>
+      <!--/ Paper video. -->
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+
+      <div class="columns is-centered">
+
+        <!-- Visual Effects. -->
+        <div class="column">
+          <div class="content">
+            <h2 class="title is-3">Car-Street Compositions</h2>
+            <p>
+              DepGAN allows you to seamlessly combine cars with various street scenes,
+              creating realistic composite images from real-world data.
+            </p>
+            <img src="images/realcarcomp.png" alt="Description of the image">
+          </div>
+        </div>
+        <!--/ Visual Effects. -->
+
+        <!-- Matting. -->
+        <div class="column">
+          <h2 class="title is-3">Face-Glasses Compositions</h2>
+          <div class="columns is-centered">
+            <div class="column content">
+              <p>
+                DepGAN enables you to add glasses to faces effortlessly,
+                producing natural-looking images with the added accessories.
+                It will also take care of occlusions and transparency for you!
+              </p>
+              <img src="images/glasscomp.png" alt="Description of the image">
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!--/ Matting. -->
+
+      <!-- Animation. -->
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Depth Aware Loss</h2>
+
+          <!-- Interpolating. -->
+          <div class="content has-text-justified">
+            <p>
+              We utilize depth aware loss which considers depth information
+              along-side the input images, enabling the generator to produce
+              outputs that accurately reflect the structural characteristics
+              of the scene. Firstly, we extract the
+              depth map from the ground truth image, and create binary
+              mask based on a threshold value. Depth pixels with values
+              above the threshold are set to 1, and values below are set to
+              0. This mask is then applied to the predicted and ground truth im-
+              ages, effectively zeroing out the regions where the depth is
+              below the threshold.
+            </p>
+          </div>
+          <div>
+            <img src="images/dal.png" alt="Description of the image">
+          </div>
+          <br />
+          <!--/ Interpolating. -->
+
+        </div>
+      </div>
+      <!--/ Animation. -->
+
+    </div>
+  </section>
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@article{ghoneim2024depgan,
+    author    = {Ghoneim, Amr and Poovvancheri, Jiju and Akiyama, Yasushi and Chen, Dong},
+    title     = {DepGAN: Leveraging Depth Maps for Handling Occlusions and Transparency in Image Composition},
+    year      = {2024},
+  }</code></pre>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <a class="icon-link" href="#">
+          <i class="fas fa-file-pdf"></i>
+        </a>
+        <a class="icon-link" href="https://github.com/amrtsg/DepGAN" class="external-link" disabled>
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p class="center-text">
+              Web template sourced from <a rel="license" href="http://nerfies.github.io">here</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
