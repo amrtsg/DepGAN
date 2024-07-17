@@ -59,7 +59,3 @@ To train depgan, run ```train.ipynb```. This trains and saves the model at every
 To test depgan, run ```predict.ipynb```, this will generate the predictions and save the output to ```logs/generated/{DATASET}```.
 
 All variables can be found and set in ```config.py```. These include config variables to control GUI, dataset paths, and model hyperparameters. Please make sure you have the correct configuration for your train/test run.
-
-## 3D to 2D Model Renderer
-
-Our model renderer can be found [here.](https://github.com/amrtsg/model-renderer)
