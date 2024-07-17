@@ -6,7 +6,7 @@ This branch contains the project page code for DepGAN
 
 If you use or want to cite DepGAN, please use:
 ```
-@misc{ghoneim2024depganleveragingdepthmaps,
+@misc{ghoneim2024depgan,
       title={DepGAN: Leveraging Depth Maps for Handling Occlusions and Transparency in Image Composition}, 
       author={Amr Ghoneim and Jiju Poovvancheri and Yasushi Akiyama and Dong Chen},
       year={2024},
