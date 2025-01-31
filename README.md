@@ -2,8 +2,22 @@
 
 DepGAN is a generative adversarial network tailored for image composition, and capable of handling occlusion and transparency while combining foreground and background images together.
 
-<strong>NOTE: Links to datasets and pretrained models will be uploaded soon! For now just use the provided bottle-basket dataset :)</strong>
+____________________________________________________
+<div align="center">
+  <a href="https://amrtsg.github.io/DepGAN/">
+    <img src="https://github.com/amrtsg/DepGAN/blob/master/misc/project.png" alt="AltText">
+  </a>
+  <a href="https://amrtsg.github.io/DepGAN/">
+    <img src="https://github.com/amrtsg/DepGAN/blob/master/misc/paper.png" alt="AltText">
+  </a>
+  <a href="https://amrtsg.github.io/DepGAN/">
+    <img src="https://github.com/amrtsg/DepGAN/blob/master/misc/arxiv.png" alt="AltText">
+  </a>
+</div>
 
+_____________________________________________________
+
+![alt text](https://github.com/amrtsg/DepGAN/blob/master/misc/results.jpg)
 ## Code Setup
 
 **The code was developed and tested on:** <br>
