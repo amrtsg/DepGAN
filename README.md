@@ -37,9 +37,9 @@ To create your own dataset, we recommend using MiDaS to estimate the depth image
 
 Dataset | Size |
 --- | --- |
-[Bottle-Basket (coming soon)]() | 13.1 MB |
-[Chair-Desk (coming soon)]() | 81.0 MB |
-[Glasses-Face (coming soon)]() | 33.4 MB |
+[Bottle-Basket](https://drive.google.com/file/d/1xdrbT9aP5RvBCTyGSMiFEF1ztcG9NT_H/view?usp=drive_link) | 13.1 MB |
+[Chair-Desk](https://drive.google.com/file/d/12NphGNRbpYttm3R1j60BGODZR6XegDRK/view?usp=drive_link) | 81.0 MB |
+[Glasses-Face](https://drive.google.com/file/d/1HrPTLrZyLImmMUEJaDxbJnhEpt8ZiWKB/view?usp=drive_link) | 33.4 MB |
 Aerial | NA |
 Real Car | NA |
 
@@ -47,9 +47,9 @@ Real Car | NA |
 
 Dataset | Model | Size |
 --- | --- | --- |
-Bottle-Basket | [bottle_basket_75 (coming soon)]() | 239.0 MB |
-Chair-Desk | [chair_desk_164 (coming soon)]() | 239.0 MB |
-Glasses-Face | [glasses_face_15 (coming soon)]() | 239.8 MB |
+Bottle-Basket | [bottle_basket_75](https://drive.google.com/file/d/1Jgk2CX2lxvhVznXc9CkR7TXWcq02bzAd/view?usp=drive_link) | 239.0 MB |
+Chair-Desk | [chair_desk_164](https://drive.google.com/file/d/1qmmy5vO-TrVjOWNqE_C3A8xAHo11X34c/view?usp=drive_link) | 239.0 MB |
+Glasses-Face | [glasses_face_15](https://drive.google.com/file/d/1L1gNnYrD-dE6SVp7el0L2wNDa0Pj1AvI/view?usp=drive_link) | 239.8 MB |
 Aerial | Coming soon... | NA |
 Real Car | Coming soon... | NA |
 
