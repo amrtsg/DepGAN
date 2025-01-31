@@ -7,7 +7,7 @@ ____________________________________________________
   <a href="https://amrtsg.github.io/DepGAN/">
     <img src="https://github.com/amrtsg/DepGAN/blob/master/misc/project.png" alt="AltText">
   </a>
-  <a href="https://amrtsg.github.io/DepGAN/">
+  <a href="https://arxiv.org/pdf/2407.11890v1">
     <img src="https://github.com/amrtsg/DepGAN/blob/master/misc/paper.png" alt="AltText">
   </a>
   <a href="https://arxiv.org/abs/2407.11890">
